@@ -59,7 +59,7 @@ class EmployeeController extends Controller
 
    public function loginStore(Request $request){
    	if(!Session::has('userid')){
-          $email    = $request->email;
+        $email    = $request->email;
 	      $password = $request->password;
 	      $user = User::where('email','=',$email)
 	                     ->where('password','=',$password)
@@ -67,8 +67,11 @@ class EmployeeController extends Controller
 	      if($user){
 	         Session::put('userid',$user->id);
 	         return redirect('table');
-	      }
-        }else{
+	         }else{
+              return redirect('table');
+           }
+        }
+        else{
         	return redirect('table');
         }
       
